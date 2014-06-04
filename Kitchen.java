@@ -9,7 +9,7 @@ import java.util.Iterator;
 public class Kitchen implements Runnable{
 
     Cassier cassier = new Cassier();
-    ArrayList <Meal> arr = new ArrayList<Meal>();
+    ArrayList <Meal> meals = new Cassier().meals;
 
     String menu [] = new String[] {"картошка", "макароны", "гречка",
             "суп", "борщ", "сало", "колбаса", "сосиски", "торт", "компот"};
@@ -18,15 +18,13 @@ public class Kitchen implements Runnable{
 
     public void addMeals () {
 
-        for (int i = 0; i < menu.length/2; i++){
-            arr.add(new Meal(menu[i]));
-        }
 
+        new Cassier().meals.add(new Meal("new meal"));
 
  }
 
     void print (){
-        Iterator <Meal> iterator = arr.iterator();
+        Iterator <Meal> iterator = meals.iterator();
         while (iterator.hasNext()){
             Meal meal = iterator.next();
             System.out.println(meal.name);
@@ -35,18 +33,11 @@ public class Kitchen implements Runnable{
     }
 
     @Override
-    public synchronized void run() {
+    public void run() {
 
-        try {
-            Thread.sleep(2000);
-        } catch (Exception e){
-            e.getMessage();
-        }
+        System.out.println("new meal");
+        new Cassier().meals.add(new Meal("new meal"));
 
-        for (int i = 0; i < arr.size(); i++){
-            arr.add(new Meal(menu[i]));
-            System.out.println(arr.get(i).name);
-
-        }
+       
     }
 }

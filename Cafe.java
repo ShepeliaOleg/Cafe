@@ -31,11 +31,6 @@ public class Cafe {
         client10.start();
 
 
-        /*Kitchen kitchen = new Kitchen();
-        kitchen.print();
-        kitchen.addMeals();
-        kitchen.print();
-*/
 
 
 

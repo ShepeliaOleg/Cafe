@@ -33,8 +33,10 @@ public class Cassier {
                        Thread.sleep(3000);
                        order();
                        Thread.interrupted();
+                       new Kitchen().run();
+
                    }
-                   
+
                }
 
 
@@ -57,4 +59,8 @@ public class Cassier {
 
 
    }
+
+    synchronized void coockMeal (){
+        new Kitchen().run();
+    }
 }

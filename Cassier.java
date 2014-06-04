@@ -25,7 +25,17 @@ public class Cassier {
 
      void getMeal() throws InterruptedException {
 
-               for ()
+               for (int i=0; meals.size()>0; i++){
+                   System.out.println(meals.get(0).name.toString());
+                   meals.remove(0);
+                   Thread.sleep(2000);
+                   if (meals.size() == 4){
+                       Thread.sleep(3000);
+                       order();
+                       Thread.interrupted();
+                   }
+                   
+               }
 
 
                }

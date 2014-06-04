@@ -8,10 +8,13 @@ import java.util.Iterator;
  */
 public class Cassier {
 
-    ArrayList <Meal> meals = new ArrayList<Meal>();
+    public ArrayList <Meal> meals = new ArrayList<Meal>();
+
+    String menu [] = new String[] {"картошка", "макароны", "гречка",
+            "суп", "борщ", "сало", "колбаса", "сосиски", "торт", "компот"};
 
     public Cassier() {
-        meals.add(new Meal("картошка"));
+        /*meals.add(new Meal("картошка"));
         meals.add(new Meal("макароны"));
         meals.add(new Meal("гречка"));
         meals.add(new Meal("суп"));
@@ -20,7 +23,17 @@ public class Cassier {
         meals.add(new Meal("колбаса"));
         meals.add(new Meal("сосиски"));
         meals.add(new Meal("торт"));
-        meals.add(new Meal("компот"));
+        meals.add(new Meal("компот"));*/
+
+        for (int i = 0; i < menu.length; i++){
+            addMeal(menu [i]);
+        }
+    }
+
+    public void addMeal (String oneMeal){
+
+        meals.add(new Meal(oneMeal));
+
     }
 
      void getMeal() throws InterruptedException {
@@ -33,7 +46,9 @@ public class Cassier {
                        Thread.sleep(3000);
                        order();
                        Thread.interrupted();
-                       new Kitchen().run();
+                       Thread thread = new Thread(new Kitchen());
+                       thread.start();
+
 
                    }
 
@@ -47,7 +62,7 @@ public class Cassier {
         Iterator<Meal> iter = meals.iterator();
         while (iter.hasNext()){
             Meal element = iter.next();
-            System.out.println(element.name.toString());
+            System.out.println("----"+element.name.toString());
 
         }
     }
@@ -60,7 +75,4 @@ public class Cassier {
 
    }
 
-    synchronized void coockMeal (){
-        new Kitchen().run();
-    }
 }
